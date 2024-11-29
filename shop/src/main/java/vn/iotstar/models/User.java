@@ -19,7 +19,7 @@ public class User implements Serializable {
 	private String phone;
 	private int isEmailActive;
 	private int isPhoneActive;
-	private String hased_password;
+	private String hashed_password;
 	private String address;
 	private int roleid;
 	private String avatar;
@@ -104,12 +104,12 @@ public class User implements Serializable {
 		this.isPhoneActive = isPhoneActive;
 	}
 
-	public String getHased_password() {
-		return hased_password;
+	public String getHashed_password() {
+		return hashed_password;
 	}
 
-	public void setHased_password(String hased_password) {
-		this.hased_password = hased_password;
+	public void setHashed_password(String hashed_password) {
+		this.hashed_password = hashed_password;
 	}
 
 	public String getAddress() {
@@ -175,12 +175,14 @@ public class User implements Serializable {
 	
 	
 
-	public User(int _id, String firstname, String email, String phone, int roleid) {
+	public User(int _id, String firstname,String slug, String email, String phone,String hashed_password, int roleid) {
 		super();
 		this._id = _id;
 		this.firstname = firstname;
+		this.slug = slug;
 		this.email = email;
 		this.phone = phone;
+		this.hashed_password = hashed_password;
 		this.roleid = roleid;
 	}
 
@@ -188,7 +190,7 @@ public class User implements Serializable {
 	public String toString() {
 		return "User [id=" + _id + ", firstname=" + firstname + ", lastname=" + lastname + ", slug=" + slug
 				+ ", id_card=" + id_card + ", email=" + email + ", phone=" + phone + ", isEmailActive=" + isEmailActive
-				+ ", isPhoneActive=" + isPhoneActive + ", hased_password=" + hased_password + ", address=" + address
+				+ ", isPhoneActive=" + isPhoneActive + ", hashed_password=" + hashed_password + ", address=" + address
 				+ ", roleid=" + roleid + ", avatar=" + avatar + ", cover=" + cover + ", point=" + point + ", e_wallet="
 				+ e_wallet + ", createdAt=" + createdAt + "]";
 	}
