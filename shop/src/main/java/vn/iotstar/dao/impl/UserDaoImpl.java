@@ -44,7 +44,7 @@ public class UserDaoImpl extends DBConnectSQL implements IUserDao {
 		try {
 
 			UserDaoImpl userDao = new UserDaoImpl();
-			System.out.print(userDao.findAll());
+			System.out.print(userDao.findBySlug("thangvo"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -65,6 +65,7 @@ public class UserDaoImpl extends DBConnectSQL implements IUserDao {
 				user.setSlug(rs.getString("slug"));
 				user.setEmail(rs.getString("email"));
 				user.setPhone(rs.getString("phone"));
+				user.setHashed_password(rs.getString("hashed_password"));
 				user.setRoleid(rs.getInt("roleid"));
 				
 				return user;
@@ -74,6 +75,72 @@ public class UserDaoImpl extends DBConnectSQL implements IUserDao {
 		}
 
 		return null;
+	}
+	@Override
+	public void insertregister(User user) {
+		String sql = "Insert INTO Users (firstname ,lastname, email, phone, salt, hashed_password, roleid) Values(?,?,?,?,?,?,?)";
+		try {
+			conn = new DBConnectSQL().getConnection();
+			ps = conn.prepareStatement(sql);
+
+			ps.setString(1, user.getFirstname());
+			ps.setString(2, user.getLastname());
+			ps.setString(3, user.getEmail());
+			ps.setString(4, user.getPhone());
+			ps.setString(5, user.getSalt());
+			ps.setInt(7, user.getRoleid());
+			ps.setString(6, user.getHashed_password());
+
+			int rowsAffected = ps.executeUpdate();
+			if (rowsAffected > 0) {
+				System.out.println("User inserted successfully.");
+			} else {
+				System.out.println("No rows inserted.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	@Override
+	public boolean checkExistEmail(String email) {
+		boolean duplicate = false;
+		String sql = "Select * From Users where email =?";
+		try {
+			conn = new DBConnectSQL().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				duplicate = true;
+			}
+			ps.close();
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return duplicate;
+	}
+	@Override
+	public boolean checkExistPhone(String phone) {
+		boolean duplicate = false;
+		String sql = "Select * From Users where phone =?";
+		try {
+			conn = new DBConnectSQL().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, phone);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				duplicate = true;
+			}
+			ps.close();
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return duplicate;
 	}
 
 }

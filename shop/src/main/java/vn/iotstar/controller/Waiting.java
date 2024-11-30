@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import vn.iotstar.models.User;
 
 @WebServlet(urlPatterns = { "/waiting" })
-public class WaitingController extends HttpServlet {
+public class Waiting extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 

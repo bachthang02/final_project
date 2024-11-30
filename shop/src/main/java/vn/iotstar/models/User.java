@@ -19,6 +19,7 @@ public class User implements Serializable {
 	private String phone;
 	private int isEmailActive;
 	private int isPhoneActive;
+	private String salt;
 	private String hashed_password;
 	private String address;
 	private int roleid;
@@ -27,6 +28,8 @@ public class User implements Serializable {
 	private int point;
 	private String e_wallet;
 	private Date createdAt;
+
+	
 	
 	public User() {
 		super();
@@ -186,6 +189,18 @@ public class User implements Serializable {
 		this.roleid = roleid;
 	}
 
+	
+	public User(String firstname, String lastname, String email, String phone,String salt, String hashed_password, int roleid) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.phone = phone;
+		this.salt  = salt;
+		this.hashed_password = hashed_password;
+		this.roleid = roleid;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + _id + ", firstname=" + firstname + ", lastname=" + lastname + ", slug=" + slug
@@ -194,6 +209,24 @@ public class User implements Serializable {
 				+ ", roleid=" + roleid + ", avatar=" + avatar + ", cover=" + cover + ", point=" + point + ", e_wallet="
 				+ e_wallet + ", createdAt=" + createdAt + "]";
 	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public User(String lastname, String email, String phone, String salt) {
+		super();
+		this.lastname = lastname;
+		this.email = email;
+		this.phone = phone;
+		this.salt = salt;
+	}
+	
+	
 	
 	
 	

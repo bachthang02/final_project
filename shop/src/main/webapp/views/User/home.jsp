@@ -11,7 +11,7 @@
 	</c:when>
 	<c:otherwise>
 		<li><a
-			href="${pageContext.request.contextPath }/member/myaccount">${sessionScope.account.fullname}</a></li>
+			href="${pageContext.request.contextPath }/member/myaccount">${sessionScope.account.slug}</a></li>
 I 									<li><a href="${pageContext.request.contextPath }/Logout">Logout</a></li>
 	</c:otherwise>
 </c:choose>

@@ -51,6 +51,7 @@ public class Login extends HttpServlet{
 		}
 
 		User user = userService.login(slug, hashed_password);
+		//System.out.println("User: " + user);
 		if (user != null) {
 			HttpSession session = req.getSession(true);
 			session.setAttribute("account", user);
@@ -59,16 +60,18 @@ public class Login extends HttpServlet{
 			}
 			resp.sendRedirect(req.getContextPath() + "/waiting");
 		} else {
+			//System.out.println(slug);
+			//System.out.println(hashed_password);
 			alertMsg = "Tài khoản hoặc mật khẩu không đúng";
 			req.setAttribute("alert", alertMsg);
 			req.getRequestDispatcher("/views/User/login.jsp").forward(req, resp);
 		}
 	}
 
-	private void saveRemeberMe(HttpServletResponse resp, String slug) {
+	private void saveRemeberMe(HttpServletResponse response, String slug) {
 		Cookie cookie = new Cookie(Constant.COOKIE_REMEMBER, slug);
 		cookie.setMaxAge(30 * 60);
-		resp.addCookie(cookie);
+		response.addCookie(cookie);
 		
 	}
 	
