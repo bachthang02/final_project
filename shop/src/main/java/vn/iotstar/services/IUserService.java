@@ -20,4 +20,6 @@ public interface IUserService {
 	boolean checkExistPhone(String phone);
 	
 	void activeEmail(User user);
+	
+	User findByPhone(String phone);
 }

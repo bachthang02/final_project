@@ -56,5 +56,10 @@ public class UserServiceImpl implements IUserService{
 		userDao.activeEmail(user);
 		
 	}
+	@Override
+	public User findByPhone(String phone) {
+		// TODO Auto-generated method stub
+		return userDao.findByPhone(phone);
+	}
 
 }

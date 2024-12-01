@@ -159,5 +159,30 @@ public class UserDaoImpl extends DBConnectSQL implements IUserDao {
 		}
 		
 	}
+	@Override
+	public User findByPhone(String phone) {
+		String sql = "SELECT * FROM users WHERE phone = ? ";
+		try {
+			conn = new DBConnectSQL().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, phone);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.setFirstname(rs.getString("firstname"));
+				user.setSlug(rs.getString("slug"));
+				user.setEmail(rs.getString("email"));
+				user.setPhone(rs.getString("phone"));
+				user.setHashed_password(rs.getString("hashed_password"));
+				user.setRoleid(rs.getInt("roleid"));
+				
+				return user;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 
 }

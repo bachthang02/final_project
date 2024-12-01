@@ -9,6 +9,10 @@ public interface IUserDao {
 	List<User> findAll();
 
 	User findBySlug(String slug);
+	
+	User findByPhone(String phone);
+	
+	
 
 	void insertregister(User user);
 	
