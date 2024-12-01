@@ -17,6 +17,8 @@ public interface IUserDao {
 	
 	boolean checkExistPhone(String phone);
 	
+	void activeEmail(User user);
+	
 	
 	
 }

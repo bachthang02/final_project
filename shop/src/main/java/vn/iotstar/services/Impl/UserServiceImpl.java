@@ -51,5 +51,10 @@ public class UserServiceImpl implements IUserService{
 		// TODO Auto-generated method stub
 		return userDao.checkExistPhone(phone);
 	}
+	@Override
+	public void activeEmail(User user) {
+		userDao.activeEmail(user);
+		
+	}
 
 }

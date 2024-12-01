@@ -18,4 +18,6 @@ public interface IUserService {
 	boolean checkExistEmail(String email);
 
 	boolean checkExistPhone(String phone);
+	
+	void activeEmail(User user);
 }

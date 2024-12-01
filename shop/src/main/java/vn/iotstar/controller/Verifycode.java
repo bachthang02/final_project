@@ -14,7 +14,7 @@ import vn.iotstar.services.IUserService;
 import vn.iotstar.services.Impl.UserServiceImpl;
 
 @WebServlet(urlPatterns = { "/VerifyCode" })
-public class VerifycodeController extends HttpServlet {
+public class Verifycode extends HttpServlet {
 
 	IUserService userService = new UserServiceImpl();
 	private static final long serialVersionUID = 1L;
@@ -37,6 +37,9 @@ public class VerifycodeController extends HttpServlet {
 
 			if (code.equals(user.getSalt())) {
 				user.setEmail(user.getEmail());
+				user.setIsEmailActive(1);
+				
+				userService.activeEmail(user);
 				;
 
 				out.println("<div class=\"container\"><br/>\r\n" + "         <br/>\r\n"

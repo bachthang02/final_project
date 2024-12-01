@@ -142,5 +142,22 @@ public class UserDaoImpl extends DBConnectSQL implements IUserDao {
 		}
 		return duplicate;
 	}
+	@Override
+	public void activeEmail(User user) {
+		String sql = "UPDATE [Users] SET isEmailActive=? , salt=? WHERE email =?";
+		try {
+			conn = new DBConnectSQL().getConnection();
+			ps = conn.prepareStatement(sql);
+
+			ps.setInt(1, user.getIsEmailActive());
+			ps.setString(2, user.getSalt());
+			ps.setString(3, user.getEmail());
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 }
